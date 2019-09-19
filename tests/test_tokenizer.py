@@ -127,6 +127,8 @@ class TestTokenizer (unittest.TestCase):
         self.assertEqual (tokenize(u"jugea-t-elle", lang='fr'), [u"jugea-t-elle"])
         self.assertEqual (tokenize(u"dira-t-on", lang='fr'), [u"dira-t-on"])
         self.assertEqual (tokenize(u"fallait-il", lang='fr'), [u"fallait-il"])
+        self.assertEqual (tokenize(u"zéro (9 degrés", lang='fr'), [u"zéro", u"neuf", u"degrés"])
+        self.assertEqual (tokenize(u"du 31 décembre 1861!", lang='fr'), [u"du", u"trente", u"et", u"un", u"décembre", u"mille", u"huit", "cent", "soixante", u"et", u"un"])        
         self.assertEqual (tokenize(u"FR3", lang='fr'), [u"fr3"])
         self.assertEqual (tokenize(u"G20", lang='fr'), [u"g20"])
         self.assertEqual (tokenize(u"d'aujourd'hui", lang='fr'), [u"d'aujourd'hui"])
@@ -152,7 +154,7 @@ class TestTokenizer (unittest.TestCase):
         self.assertEqual (tokenize(u'1,000015', lang='fr'), [u'un', u'virgule', u'zéro', u'zéro', u'zéro', u'zéro', u'quinze'])
         self.assertEqual (tokenize(u'1,00001523', lang='fr'), [u'un', u'virgule', u'zéro', u'zéro', u'zéro', u'zéro', u'un', u'cinq', u'deux', u'trois'])
         self.assertEqual (tokenize(u'1000000 2234567', lang='fr'), [u'un', u'million', u'deux', u'millions', u'deux', u'cent', u'trente-quatre', u'mille', u'cinq', u'cent', u'soixante-sept'])
-        self.assertEqual (tokenize(u'42,00,', lang='fr'), [u'quarante-deux', u'virgule', u'zéro', u'zéro'])
+        self.assertEqual (tokenize(u'42,00', lang='fr'), [u'quarante-deux', u'virgule', u'zéro', u'zéro'])
 
     def test_nombre_en_mots(self):
         self.assertEqual (nombre_en_mots(1), u'un')
